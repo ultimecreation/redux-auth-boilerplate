@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle'
+import Header from './Layout/Header';
+import Footer from './Layout/Footer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Pages/Home';
+import Protected from './Pages/Protected';
+import Login from './Pages/Login';
+import Logout from './Pages/Logout';
+import PageNotFound from './Pages/PageNotFound';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/protege" element={<Protected/>}/>
+        <Route path="/connexion" element={<Login/>}/>
+        <Route path="/deconnexion" element={<Logout/>}/>
+        <Route path="*" element={<PageNotFound/>}/>
+      </Routes>
+
+      <Footer />
+    </BrowserRouter>
+
   );
 }
 
