@@ -4,7 +4,8 @@
             "id": 1,
             "username":"nas",
             "email": "nas@gmail.com",
-            "password": "nas@gmail.com"
+            "password": "nas@gmail.com",
+            "roles":["USER"]
         }
     ],
     "posts": [
