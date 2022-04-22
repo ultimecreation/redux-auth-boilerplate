@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({isAuthenticated}) => {
+
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
             <div className="container-fluid">
@@ -19,12 +21,17 @@ const Navbar = () => {
                         </li>
                     </ul>
                     <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <NavLink to="/connexion" className="nav-link" >Connexion</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/deconnexion" className="nav-link" >Deconnexion</NavLink>
-                        </li>
+                        {isAuthenticated 
+                            ? <li className="nav-item">
+                                <NavLink to="/deconnexion" className="nav-link" >Deconnexion</NavLink>
+                            </li>
+                            : <li className="nav-item">
+                                <NavLink to="/connexion" className="nav-link" >Connexion</NavLink>
+                            </li>
+                        
+                        }
+                        
+                        
                     </ul>
 
                 </div>
@@ -32,5 +39,9 @@ const Navbar = () => {
         </nav>
     )
 }
-
-export default Navbar
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.authReducer.isAuthenticated
+    }
+}
+export default connect(mapStateToProps)(Navbar)
