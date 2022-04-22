@@ -1,4 +1,4 @@
-import { AUTH_ATTEMPT, AUTH_LOGIN_FAILURE, AUTH_LOGIN_SUCCESS, AUTH_RELOAD_USER, AUTH_RELOAD_USER_SUCCESS, AUTH_AUTHORIZE_USER, AUTH_RESET_AUTHORIZATION, AUTH_LOGOUT } from "./authTypes"
+import { AUTH_ATTEMPT, AUTH_LOGIN_FAILURE, AUTH_LOGIN_SUCCESS, AUTH_RELOAD_USER_SUCCESS, AUTH_AUTHORIZE_USER, AUTH_RESET_AUTHORIZATION, AUTH_LOGOUT } from "./authTypes"
 
 
 export const login = incomingUser => async dispatch => {
@@ -16,31 +16,15 @@ export const login = incomingUser => async dispatch => {
     else dispatch({ type: AUTH_LOGIN_FAILURE })
 
 }
-export const checkAuthorizations = (requiredRoles) => async dispatch => {
-    const loggedUser = await getLoggedUser()
-    let authorized = false
 
-    if (loggedUser) {
-        await requiredRoles.forEach(requiredRole => {
-            if (loggedUser.roles.includes(requiredRole)) authorized = true
-        })
-    }
-    if (authorized) dispatch({ type: AUTH_AUTHORIZE_USER, payload: authorized })
-
-}
 export const resetAuthorizations = () => async dispatch => {
     dispatch({ type: AUTH_RESET_AUTHORIZATION })
 }
 
 export const reloadUserData = () => async dispatch => {
 
-    dispatch({ type: AUTH_RELOAD_USER })
     const loggedUser = await getLoggedUser()
-    if (loggedUser) {
-        dispatch({ type: AUTH_RELOAD_USER_SUCCESS, payload: loggedUser })
-
-    }
-
+    if (loggedUser)  dispatch({ type: AUTH_RELOAD_USER_SUCCESS, payload: loggedUser })
 }
 
 export const logout = () => dispatch => {

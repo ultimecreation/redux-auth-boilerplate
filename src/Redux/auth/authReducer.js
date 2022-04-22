@@ -1,11 +1,10 @@
-import { AUTH_ATTEMPT, AUTH_LOGIN_FAILURE, AUTH_LOGIN_SUCCESS, AUTH_LOGOUT, AUTH_RELOAD_USER,AUTH_RELOAD_USER_SUCCESS , AUTH_AUTHORIZE_USER,AUTH_RESET_AUTHORIZATION} from "./authTypes"
+import { AUTH_ATTEMPT, AUTH_LOGIN_FAILURE, AUTH_LOGIN_SUCCESS, AUTH_LOGOUT, AUTH_RELOAD_USER,AUTH_RELOAD_USER_SUCCESS } from "./authTypes"
 
 
 const initialState = {
     user: null,
     roles: null,
     isAuthenticated: false,
-    isAuthorized: false,
     isLoading: false
 }
 
@@ -30,22 +29,13 @@ const authReducer = (state=initialState, action) =>{
                 isAuthenticated: true,
                 isLoading: false
             }
-        case AUTH_AUTHORIZE_USER:
-            return {
-                ...state,
-                isAuthorized: true
-            }
         case AUTH_LOGIN_FAILURE:
         case AUTH_LOGOUT:
             return {
                 ...state,
                 ...initialState
             }
-        case AUTH_RESET_AUTHORIZATION:
-            return {
-                ...state,
-                isAuthorized: false
-            }
+        
         default:
             return state 
     }

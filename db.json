@@ -5,7 +5,7 @@
             "username":"nas",
             "email": "nas@gmail.com",
             "password": "nas@gmail.com",
-            "roles":["USER"]
+            "roles":["USER","ADMIN"]
         }
     ],
     "posts": [
