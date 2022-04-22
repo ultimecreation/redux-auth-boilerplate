@@ -10,6 +10,7 @@ import Protected from './Pages/Protected';
 import Login from './Pages/Login';
 import Logout from './Pages/Logout';
 import PageNotFound from './Pages/PageNotFound';
+import AuthenticationRequired from './Utils/AuthenticationRequired';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/protege" element={<Protected/>}/>
+        <Route path="/protege" element={<AuthenticationRequired><Protected/></AuthenticationRequired>}/>
         <Route path="/connexion" element={<Login/>}/>
         <Route path="/deconnexion" element={<Logout/>}/>
         <Route path="*" element={<PageNotFound/>}/>
